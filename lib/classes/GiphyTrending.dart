@@ -1,12 +1,11 @@
 import 'GiphyRequest.dart';
 
-class GiphyTrending {
-  GiphyRequest _request;
+class GiphyTrending extends GiphyRequest{
+  String _url;
 
   GiphyTrending() {
-    _request = GiphyRequest.trending();
+    this._url = "https://api.giphy.com/v1/gifs/trending?api_key=${GiphyRequest.key}&limit=20&rating=G";
   }
 
-  Future<Map> get bestGifs => _request.doSearch();
-
+  get url => this._url;
 }

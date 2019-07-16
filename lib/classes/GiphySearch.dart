@@ -1,15 +1,12 @@
 import 'GiphyRequest.dart';
 
 class GiphySearch {
-  GiphyRequest _request;
-  String _query;
-  int _offset;
-  String _language;
+  String _language, _url;
 
-  GiphySearch(this._query, this._language) {
-    this._offset = 20;
-    _request = GiphyRequest.search(_query, _offset, _language);
+  GiphySearch(String query, int offset) {
+    this._language = "en";
+    this._url = "https://api.giphy.com/v1/gifs/search?api_key=${GiphyRequest.key}&q=$query&limit=19&offset=$offset&rating=G&lang=$_language";
   }
 
-  Future<Map> get searchGifs => _request.doSearch();
+  get url => this._url;
 }
