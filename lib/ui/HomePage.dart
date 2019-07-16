@@ -4,7 +4,8 @@ import 'package:search_gif/classes/GiphyTrending.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:search_gif/classes/GiphySearch.dart';
-
+import 'package:share/share.dart';
+import 'package:transparent_image/transparent_image.dart';
 import 'GifPage.dart';
 
 String _query;
@@ -71,15 +72,20 @@ class _HomePageState extends State<HomePage> {
       BuildContext context, snapshotData, int index, int length) {
     if (_query == null || _query.isEmpty || index < length) {
       return GestureDetector(
-        onTap: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => GifPage(Giphy(snapshotData[index]))));
-        },
-        child: Image.network(
-          Giphy(snapshotData[index]).gifPreview,
-          height: 300.0,
-          fit: BoxFit.cover,
-        ),
-      );
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => GifPage(Giphy(snapshotData[index]))));
+          },
+          onLongPress: () {
+            Share.share(Giphy(snapshotData[index]).gifFixedHeight);
+          },
+          child: FadeInImage.memoryNetwork(
+              placeholder: kTransparentImage,
+              image: Giphy(snapshotData[index]).gifPreview,
+              height: 300.0,
+              fit: BoxFit.cover));
     } else {
       return Container(
         child: GestureDetector(
