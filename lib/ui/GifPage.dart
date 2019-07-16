@@ -1,0 +1,29 @@
+import 'package:flutter/material.dart';
+import 'package:search_gif/classes/Giphy.dart';
+import 'package:share/share.dart';
+
+class GifPage extends StatelessWidget {
+  Giphy _giphy;
+
+  GifPage(this._giphy);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(_giphy.title),
+        backgroundColor: Colors.black,
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.share),
+            onPressed: () {
+              Share.share(_giphy.gifFixedHeight);
+            },
+          )
+        ],
+      ),
+      backgroundColor: Colors.black,
+      body: Center(child: Image.network(_giphy.gifFixedHeight)),
+    );
+  }
+}

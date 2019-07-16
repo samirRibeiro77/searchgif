@@ -5,6 +5,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:search_gif/classes/GiphySearch.dart';
 
+import 'GifPage.dart';
+
 String _query;
 int _offset;
 
@@ -69,6 +71,9 @@ class _HomePageState extends State<HomePage> {
       BuildContext context, snapshotData, int index, int length) {
     if (_query == null || _query.isEmpty || index < length) {
       return GestureDetector(
+        onTap: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => GifPage(Giphy(snapshotData[index]))));
+        },
         child: Image.network(
           Giphy(snapshotData[index]).gifPreview,
           height: 300.0,
