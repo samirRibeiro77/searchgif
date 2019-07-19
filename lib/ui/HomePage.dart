@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:search_gif/classes/Giphy.dart';
+import 'package:search_gif/classes/GiphyShare.dart';
 import 'package:search_gif/classes/GiphyTrending.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:search_gif/classes/GiphySearch.dart';
-import 'package:share/share.dart';
 import 'package:transparent_image/transparent_image.dart';
 import 'GifPage.dart';
 
@@ -79,7 +79,7 @@ class _HomePageState extends State<HomePage> {
                     builder: (context) => GifPage(Giphy(snapshotData[index]))));
           },
           onLongPress: () {
-            Share.share(Giphy(snapshotData[index]).gifFixedHeight);
+            GiphyShare.share(context, Giphy(snapshotData[index]));
           },
           child: FadeInImage.memoryNetwork(
               placeholder: kTransparentImage,

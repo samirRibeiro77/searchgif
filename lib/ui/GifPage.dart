@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:search_gif/classes/Giphy.dart';
-import 'package:share/share.dart';
+import 'package:search_gif/classes/GiphyShare.dart';
 
 class GifPage extends StatelessWidget {
   Giphy _giphy;
@@ -17,7 +17,7 @@ class GifPage extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.share),
             onPressed: () {
-              Share.share(_giphy.gifFixedHeight);
+              GiphyShare.share(context, _giphy);
             },
           )
         ],
